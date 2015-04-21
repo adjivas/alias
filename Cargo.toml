@@ -1,0 +1,16 @@
+[package]
+
+name = "alias"
+version = "0.0.1"
+authors = ["adjivas <adjivas@users.noreply.github.com>"]
+description = "returns the alias from a string"
+license = "GNUv3"
+repository = "https://github.com/adjivas/alias"
+
+[lib]
+name = "aliaslib"
+path = "src/lib.rs"
+
+[[bin]]
+name = "main"
+path = "src/bin.rs"
