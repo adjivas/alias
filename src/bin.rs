@@ -5,19 +5,19 @@
 // This file may not be copied, modified, or distributed
 // except according to those terms.
 
-extern crate aliaslib;
+extern crate macrolib;
 
 fn main() {
-  let files = vec!["./data/example.alias".to_string()];
-  let dictionary = aliaslib::alias::Dictionary::from_files(&files);
+  let files = vec!["./data/example.macro".to_string()];
+  let dictionary = macrolib::_macro::Dictionary::from_files(&files);
   let mut line:String = String::new();
   loop {
     match std::io::stdin().read_line(&mut line) {
       Ok(_) => {
-        let alias:String = line.chars().take_while(|x|
+        let line:String = line.chars().take_while(|x|
           *x != '\n'
         ).collect();
-        let sentence = dictionary.get_word(&alias);
+        let sentence = dictionary.get_alias(&line);
 
         println!("{:?} ", sentence);
       },

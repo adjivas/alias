@@ -5,7 +5,7 @@
 // This file may not be copied, modified, or distributed
 // except according to those terms.
 
-pub mod alias {
+pub mod _macro {
   use std::collections::HashMap;
   use std::fs::File;
   use std::io::BufReader;
@@ -40,14 +40,13 @@ pub mod alias {
     }
 
     /// The `get_word` function returns the synonym's word.
-    pub fn get_word (
+    pub fn get_alias (
       &self,
-      keys: &str
+      word: &str
     ) -> Result<String, String> {
-      let word:String = keys.chars().flat_map(|c| c.to_lowercase()).collect();
-      match self.hash.get(&word) {
+      match self.hash.get(word) {
         Some(value) => Ok(value.clone()),
-        None => Err(word),
+        None => Err(word.to_string()),
       }
     }
   }

@@ -1,14 +1,14 @@
 [package]
 
-name = "alias"
+name = "macro"
 version = "0.0.1"
 authors = ["adjivas <adjivas@users.noreply.github.com>"]
-description = "returns the alias from a string"
+description = "Replace the word by the alias or env's variable"
 license = "GNUv3"
-repository = "https://github.com/adjivas/alias"
+repository = "https://github.com/adjivas/macro"
 
 [lib]
-name = "aliaslib"
+name = "macrolib"
 path = "src/lib.rs"
 
 [[bin]]

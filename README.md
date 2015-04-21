@@ -1,9 +1,9 @@
-Alias
+Macro
 =====
 
-[![Build Status](https://travis-ci.org/adjivas/alias.svg)](https://travis-ci.org/adjivas/alias)
+[![Build Status](https://travis-ci.org/adjivas/macro.svg)](https://travis-ci.org/adjivas/macro)
 
-This librairy is a systen's project for replace word by alias from environement.
+This librairy is a systen's project for replace word by alias or by variable's environement -env-.
 
 #### Example:
 ```shell
@@ -30,4 +30,4 @@ Err("hello")
 ```
 
 # License
-*alias*'s code in this repo uses the [GNU GPL v3](http://www.gnu.org/licenses/gpl-3.0.html) [license](https://github.com/adjivas/alias/blob/master/LICENSE).
+*macro*'s code in this repo uses the [GNU GPL v3](http://www.gnu.org/licenses/gpl-3.0.html) [license](https://github.com/adjivas/macro/blob/master/LICENSE).
