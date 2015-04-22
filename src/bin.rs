@@ -9,17 +9,18 @@ extern crate macrolib;
 
 fn main() {
   let files = vec!["./data/example.macro".to_string()];
-  let dictionary = macrolib::_macro::Dictionary::from_files(&files);
+  let mut _macro = macrolib::_macro::Dictionary::from_files(&files);
   let mut line:String = String::new();
+
   loop {
     match std::io::stdin().read_line(&mut line) {
       Ok(_) => {
-        let line:String = line.chars().take_while(|x|
+        let arg:String = line.chars().take_while(|x|
           *x != '\n'
         ).collect();
-        let sentence = dictionary.get_alias(&line);
+        let result = _macro.interpreter(&arg);
 
-        println!("{:?} ", sentence);
+        println!("{:?}", result);
       },
       Err(_) => break ,
     }

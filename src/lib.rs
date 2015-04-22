@@ -12,12 +12,14 @@ pub mod _macro {
   use std::io::BufRead;
   use std::path::PathBuf;
 
-  /// The `dictionary` structure is database of synonym.
+  /// The `Dictionary` structure is database of synonym.
   pub struct Dictionary {
-    hash: HashMap<String, String>,
+    alias: HashMap<String, String>,
   }
 
   impl Dictionary {
+
+    /// The `from_files` constructor function returns a new Dictionary's Dictionary.
     pub fn from_files (
       files: &Vec<String>
     ) -> Dictionary {
@@ -35,25 +37,54 @@ pub mod _macro {
         }
       }
       Dictionary {
-        hash: dict,
+        alias: dict,
       }
     }
 
-    /// The `get_word` function returns the synonym's word.
-    pub fn get_alias (
+    /// The `interpreter` function returns the action.
+    pub fn interpreter (
+      &mut self,
+      line: &String,
+    ) -> String {
+      let mut args = line.split(" -> ");
+      match args.next() {
+        Some(key) => {
+          match args.next() {
+            Some(value) => self.set_alias(key.to_string(), value.to_string()),
+            None => self.get_alias(&key),
+          }
+        },
+        None => panic!("alias interpreter bad split"),
+      }
+    }
+
+    /// The `get_word` function returns the value.
+    fn get_alias (
       &self,
-      word: &str
-    ) -> Result<String, String> {
-      match self.hash.get(word) {
-        Some(value) => Ok(value.clone()),
-        None => Err(word.to_string()),
+      value: &str,
+    ) -> String {
+      match self.alias.get(value) {
+        Some(value) => value.clone(),
+        None => value.to_string(),
+      }
+    }
+
+    /// The `set_word` function returns the result of addeds value for the key.
+    fn set_alias (
+      &mut self,
+      key: String,
+      value: String,
+    ) -> String {
+      match self.alias.insert(key, value.clone()) {
+        Some(value) => value,
+        None => value,
       }
     }
   }
 
   /// The `parse` function returns the keys and value from a line.
   fn parse (
-    line: &str
+    line: &str,
   ) -> (String, String) {
     let lines:String = line.chars().take_while(|x| *x != '\n').collect();
     let mut split = lines.split(" -> ");
@@ -86,4 +117,3 @@ pub mod _macro {
     lines
   }
 }
-
