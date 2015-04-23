@@ -6,7 +6,6 @@
 // except according to those terms.
 
 pub mod _macro {
- pub mod _macro {
     use std::collections::HashMap;
     use std::fs::File;
     use std::io::BufReader;
@@ -131,51 +130,4 @@ pub mod _macro {
       }
       lines
     }
-  }
-
-  fn command (
-    line: &String,
-    parser: &interpreterlib::interpreter::Parser,
-    _macro: &_macro::Alias,
-  ) -> String { 
-    match parser.exec(line) {
-      Ok(display) => display,
-      Err(why) => why,
-    }
-  }
-
-  fn learn (
-    line: &String,
-    alias: &mut _macro::Alias,
-  ) -> String {
-    let learn:String = line.chars().take_while(|x|
-      !x.is_whitespace()
-    ).skip(1).collect();
-    let arg:&String = &line.chars().skip_while(|x|
-      !x.is_whitespace()
-    ).skip(1).collect();
-    match learn.as_ref() {
-      "alias" => alias.interpreter(arg),
-      "env" => env::interpreter(arg),
-      _ => "bad expression".to_string(),
-    }
-  }
-
-  pub fn interpreter (
-    line: &String,
-    alias: &mut _macro::Alias,
-    parser: &interpreterlib::interpreter::Parser,
-  ) -> String {
-    match line.as_bytes()[0] as char {
-      c if c.is_alphanumeric() => {
-        let mut replaced:String = line.clone();
-
-        replaced = env::replace(&replaced);
-        replaced = alias.replace(&replaced);
-        command(&replaced, &parser, &alias)
-      },
-      c if c == '!' => learn(line, alias),
-      _ => "".to_string(),
-    }
-  }
 }

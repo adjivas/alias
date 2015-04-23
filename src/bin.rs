@@ -9,7 +9,7 @@ extern crate macrolib;
 
 fn main() {
   let files = vec!["./data/example.macro".to_string()];
-  let mut _macro = macrolib::_macro::Dictionary::from_files(&files);
+  let mut _macro = macrolib::_macro::Alias::from_files(&files);
   let mut line:String = String::new();
 
   loop {
