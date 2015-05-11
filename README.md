@@ -2,6 +2,7 @@ Macro
 =====
 
 [![Build Status](https://travis-ci.org/adjivas/macro.svg)](https://travis-ci.org/adjivas/macro)
+[![GPLv3 License](http://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/copyleft/gpl.html)
 
 This librairy is a systen's project for replace word by alias or by variable's environement -env-.
 
